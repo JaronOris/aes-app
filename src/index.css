@@ -35,34 +35,32 @@ p {
   margin: 17px 5px;
   width: 95%;
   height: 60px;
-  border: solid 2px black;
   display: flex;
 }
 
 .timeBlock {
   width: 50%;
   height: 100%;
+  color: var(--text-color);
 }
 
-.allottedTime {
-  color: var(--text-color);
+form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  input {
+input {
+  text-align: center;
+  font-family: montserrat-regular;
+  font-size: 12pt;
   width: 90px;
-  height: 30px;
+  height: 25px;
   border-radius: 10px;
   background-color: hsl(4 5 93);
   border: 2px solid var(--accent-color);
-  font-family: montserrat-regular;
-  }
-}
-
-.startTime {
-  background-color: red;
+  /* z-index: 1000; */
 }
 
 .clock-container {
@@ -73,4 +71,36 @@ p {
 font-family: montserrat-semibold;
 font-size: 3.5em;
 text-align: center;
+}
+
+.stopwatch {
+font-family: montserrat-semibold;
+font-size: 3.5em;
+text-align: center;
+}
+
+.controls {
+  margin: 0 auto;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button {
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  padding: 2px 10px;
+}
+
+.start {
+  background-color: lightgreen;
+}
+
+.stop {
+  background-color: lightcoral;
+}
+
+.reset {
+  background-color: lightblue;
 }
