@@ -1,38 +1,49 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 
 function Card() {
-
   const [stopTime, setStopTime] = useState();
-  const [isRunning, setIsRunning] = useState(false);
-  const [elapsedTime, setElapsedTime] = useState(0)
+  const [remainingHour, setRemainingHour] = useState();
+  const [remainingMin, setRemainingMin] = useState();
   const allottedTime = useRef(null);
   const startTime = useRef(null);
 
-
   function timerStart() {
-
     const timeLimit = +allottedTime.current.value;
     let start = startTime.current.value;
 
     const hourLimit = +start.slice(0, start.indexOf(":"));
-    const minuteLimit = +start.slice(start.indexOf(":") +1)
+    const minuteLimit = +start.slice(start.indexOf(":") + 1);
 
     const allottHour = Math.floor(timeLimit / 60);
-    const allottMinute = Math.floor(timeLimit %60);
+    const allottMinute = Math.floor(timeLimit % 60);
 
-    let timeRemainHour = allottHour + hourLimit; 
-    const timeRemainMin = allottMinute + minuteLimit;
+    let timeRemainHour = allottHour + hourLimit;
+    let timeRemainMin = allottMinute + minuteLimit;
+
+    if (timeRemainMin >= 60) {
+      timeRemainHour++;
+      timeRemainMin = timeRemainMin - 60;
+    }
 
     timeRemainHour = timeRemainHour % 12 || 12;
-  
-    setStopTime(timeRemainHour + ":" + timeRemainMin)
+    setRemainingHour(timeRemainHour);
+    setRemainingMin(timeRemainMin);
+    setStopTime(timeRemainHour + ":" + timeRemainMin);
+  }
+
+  function resetTimer() {
+    setStopTime();
+  }
+
+  function padZero(number) {
+    return (number < 10 ? "0" : "") + number;
   }
 
   function formatTime() {
     if (stopTime == undefined) {
-      return `00:00`
+      return `Stop Time 00:00`;
     } else {
-      return `${stopTime}`
+      return `Stop Time ${padZero(remainingHour)}:${padZero(remainingMin)}`;
     }
   }
 
@@ -69,10 +80,8 @@ function Card() {
         <button onClick={timerStart} className="start button">
           Start
         </button>
-        <button className="stop button">
-          Stop
-        </button>
-        <button className="reset button">
+        <button className="stop button">Stop</button>
+        <button onClick={resetTimer} className="reset button">
           Reset
         </button>
       </div>

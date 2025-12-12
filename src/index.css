@@ -64,19 +64,12 @@ input {
 }
 
 .clock-container {
-
 }
 
 .clock {
-font-family: montserrat-semibold;
-font-size: 3.5em;
-text-align: center;
-}
-
-.stopwatch {
-font-family: montserrat-semibold;
-font-size: 3.5em;
-text-align: center;
+  font-family: montserrat-semibold;
+  font-size: 3.5em;
+  text-align: center;
 }
 
 .controls {
